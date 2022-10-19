@@ -1,0 +1,143 @@
+.banner {
+    background: url(../img/blog1.jpg) no-repeat center center;
+    background-size: cover;
+    color: #ffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 600px;
+}
+
+.banner .text-banner h4{
+    margin-top: 130px;
+    text-align: left;
+    letter-spacing: 3px;
+    font-size: 65px;
+}
+
+
+.portfolio {
+    background: #121212;
+  }
+  
+  .portfolio h1 {
+    color: #fff;
+    align-items: center;
+  }
+  .portfolio .card p{
+    font-size: 14px;
+    text-align:justify ;
+  }
+
+  #reviews {
+
+    background: linear-gradient(-90deg, rgba(8, 32, 50, 0.8), rgba(8, 32, 50, 0.8)), url(../img/blog1.jpg), #082032;;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.review {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    margin: 15px;
+    max-width: 768px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.review .bxs-quote-alt-left {
+    font-size: 120px;
+    position: absolute;
+    opacity: 0.1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.review img {
+    width: 80px !important;
+    height: 80px;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.review h5 {
+    margin-top: 16px;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.review h3 {
+    margin-top: 26px;
+    margin-bottom: 26px;
+    font-size: 22px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+.review small {
+    color: #106eea;
+}
+
+
+.review .stars {
+    color: orange;
+}
+
+
+#milestone {
+    background:  grey;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#milestone h3{
+    font-size: 44px;
+}
+#milestone h3 span{
+    font-size: 44px;
+    color: orange;
+}
+
+#milestone img {
+    width: 150px;
+    height: 120px;
+    margin-bottom: 30px;
+}
+
+footer {
+    background: linear-gradient(0deg, rgba(8, 32, 50, 0.9), rgba(8, 32, 50, 0.9)), url(../img/blog2.jpg), #082032;;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+footer .footer-top {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+footer .navbar-brand {
+    color: #fff;
+}
+
+footer p {
+    color: #ADB3B9;
+}
+
+footer .social-icons a {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
