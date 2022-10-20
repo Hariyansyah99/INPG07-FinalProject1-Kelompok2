@@ -1,55 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>To-Do List App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Links -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
+      integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/todo.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="ui container">
+        <img class="logo" src="img/logo.png" alt="">
+        <a href="index.html">HOME</a>
+      </div>
+    </header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T0 Do List</title>
-    <link rel="stylesheet" href="css/todo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://kit.fontawesome.com/a805e016e4.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    
-    <style>
-        body{
-            background: url(image/11.jpg);
-        }
-    </style>
-</head>
-
-<body>
-    
-    <div class="container">
-        <div class="card">
-        <div class="header">
-             <div class="header-title">
-            <h1>SKAWAN DEVELOPER</h1>
+    <div class="ui container">
+      <form id="add-task" class="ui left icon input fluid">
+        <input
+          id="add-task-input"
+          class="large"
+          type="text"
+          placeholder="Write your task here..."
+        />
+        <i class="tasks icon"></i>
+      </form>
+      <div id="buttons" class="ui stackable grid equal width">
+        <button
+          id="clear-all-tasks"
+          class="ui button column"
+          onclick="showClearAllTasksModal()"
+        >
+          Clear all tasks
+        </button>
+        <button
+          disabled
+          class="ui button column"
+          onclick="showClearCompletedTasksModal()"
+        >
+          Clear completed tasks
+        </button>
+      </div>
+      <ul id="tasks-list" class="ui segments"></ul>
+      <div id="edit-modal" class="ui tiny modal">
+        <div class="header">Update Your Task</div>
+        <div class="content">
+          <div class="ui fluid input">
+            <input id="task-id" type="hidden" />
+            <input id="task-text" type="text" />
+          </div>
         </div>
-        <div class="notification-container">
-        <div class="notification">
-            <p task-notification>Task 5</p>
-            <i class="fas fa-running"></i>
+        <div class="actions">
+          <div class="ui cancel button">Cancel</div>
+          <div id="update-button" class="ui positive right labeled icon button">
+            Update
+            <i class="checkmark icon"></i>
+          </div>
         </div>
-        <div class="notification">
-            <p finish-notification>Finish 0</p>
-            <i class="fas fa-running"></i>
+      </div>
+      <div id="remove-modal" class="ui tiny modal">
+        <div class="header">Delete Your Task</div>
+        <div class="content">
+          <div class="ui fluid input">
+            <input id="task-id" type="hidden" />
+            <p>Are you sure you want to delete your task?</p>
+          </div>
         </div>
+        <div class="actions">
+          <div class="ui cancel red button">No</div>
+          <div id="remove-button" class="ui positive right labeled icon button">
+            Yes
+            <i class="checkmark icon"></i>
+          </div>
+        </div>
+      </div>
+      <div id="clear-all-tasks-modal" class="ui tiny modal">
+        <div class="header">Clear All Tasks</div>
+        <div class="content">
+          <div class="ui fluid input">
+            <input id="task-id" type="hidden" />
+            <p>Are you sure you want to clear all tasks?</p>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui cancel red button">No</div>
+          <div
+            id="remove-button"
+            onclick="clearAllTasks()"
+            class="ui positive right labeled icon button"
+          >
+            Yes
+            <i class="checkmark icon"></i>
+          </div>
+        </div>
+      <div id="clear-completed-tasks-modal" class="ui tiny modal">
+        <div class="header">Clear Completed Tasks</div>
+        <div class="content">
+          <div class="ui fluid input">
+            <input id="task-id" type="hidden" />
+            <p>Are you sure you want to clear completed tasks?</p>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui cancel red button">No</div>
+          <div
+            id="remove-button"
+            onclick="clearAllTasks()"
+            class="ui positive right labeled icon button"
+          >
+            Yes
+            <i class="checkmark icon"></i>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
 
-        
-        <div class="list-container" list-example>
-            
-        </div>
-        <div class="input-container ">
-        <input type="text" class="input-list" input-list>
-        <i class="fas fa-plus-circle button-input-submit" input-submit> </i>
-    </div>
-</div>
-</div>
-
-    <script src="js/main.js"></script>
-</body>
-
+  
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
+      integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+      integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script type="text/javascript" src="js/todo.js"></script>
+  </body>
 </html>
